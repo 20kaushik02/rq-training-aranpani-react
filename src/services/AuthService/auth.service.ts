@@ -18,11 +18,11 @@ const UserService = () => {
 
 	const { setAuthenticated } = AuthContext();
 
-	const loginUser = (data: User) => {
+	const loginUser = async (data: User) => {
 		setLoading(true);
-		return axiosInstance
-			.post(ApiRoutes.USER_LOGIN, data)
-			.then((response) => {
+		try {
+			try {
+				const response = await axiosInstance.post(ApiRoutes.USER_LOGIN, data);
 				const user = deserialize(User, response.data["user"]);
 				Notification({
 					message: "Login",
@@ -31,19 +31,18 @@ const UserService = () => {
 				});
 				setAuthenticated(user);
 				navigate(AppRoutes.HOME);
-			})
-			.catch((error) => {
+			} catch (error: any) {
 				Notification({
 					message: "Login failed",
 					description: "incorrect email or password",
 					type: NotificationTypes.ERROR,
 				});
-			
+
 				setError(error);
-			})
-			.finally(() => {
-				setLoading(false);
-			});
+			}
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return {
