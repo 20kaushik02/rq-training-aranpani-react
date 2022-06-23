@@ -23,7 +23,7 @@ const AuthContent: any = createContext({});
 const AuthContext = () => {
   const context = useContext<AuthContentProps>(AuthContent);
   if (!context) {
-    throw new Error(`useMeContext must be used within a MeContextProvider`);
+    throw new Error(`useContext must be used within a contextProvider`);
   }
   const [auth, setAuth] = context;
   

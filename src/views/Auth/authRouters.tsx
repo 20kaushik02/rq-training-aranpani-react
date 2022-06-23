@@ -13,8 +13,8 @@ const authRouter = () => {
 
   return (
     <Routes>
-      {routes.map(({ component, ...routerProps }) => (
-        <Route {...routerProps} element={component} />
+      {routes.map(({ component, ...routerProps }, index) => (
+        <Route key={index} {...routerProps} element={component} />
       ))}
       <Route  path="*" element={<Navigate to={NavigationRoutes.LOGIN}/>} />
     </Routes>
