@@ -18,10 +18,9 @@ $input-bg: #F8FBFC;
 /* Component colors */ 
 
 /* Input Field */ 
-$input-border-color: rgba(0, 0, 0, 0.164);
-$input-border-color-hover: #006FBA;
+$input-border-color: #d6d8e5;
 $input-border-box-shadow: 0 0 0 2px rgba($color: #006FBA, $alpha: 0.2);
-$input-border-radius: 4px;
+$input-border-radius: 6px;
 
 /* Default Button */
 $button-default-border-color: #00d404;
@@ -30,10 +29,14 @@ $button-default-text-color: #00d404;
 $button-default-border-radius: 4px;
 
 /* Primary Button */
-$button-primary-border-color: #009B02;
-$button-primary-bg-color: #00d404;
+$button-primary-border-color: #396aff;
+$button-primary-bg-color: #396aff;
 $button-primary-text-color: white;
-$button-primary-border-radius: 4px;
+$button-primary-border-radius: 6px;
+/* Primary Button - Disabled*/
+$button-primary-disabled-bg-color: rgba(57, 106, 255, 0.7);
+$button-primary-disabled-border-color: rgba(57, 106, 255, 0.7);
+
 
 /* Checkbox */
 $checkbox-bg-color: #00d404;

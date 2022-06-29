@@ -1,5 +1,5 @@
 import axiosInstance from "../../interceptor/axiosInstance";
-import { deserialize } from "serializr";
+import { deserialize, serialize } from "serializr";
 import { User } from "../../models/user.model";
 import Notification from "../../shared/components/Notification";
 import { NotificationTypes } from "../../enums/notificationTypes";
@@ -12,6 +12,8 @@ import { AppRoutes } from "../../routes/routeConstants/appRoutes";
 const UserService = () => {
 	const navigate = useNavigate();
 
+	const [user, setUser] = useState<User>()
+
 	const [error, setError] = useState<Error>();
 
 	const [loading, setLoading] = useState(false);
@@ -19,33 +21,45 @@ const UserService = () => {
 	const { setAuthenticated } = AuthContext();
 
 	const loginUser = async (data: User) => {
-		setLoading(true);
 		try {
+			setLoading(true);
+			const UserJSON = {
+				user: serialize(data),
+			};
 			try {
-				const response = await axiosInstance.post(ApiRoutes.USER_LOGIN, data);
+				const response = await axiosInstance.post(ApiRoutes.USER_LOGIN, UserJSON);
 				const user = deserialize(User, response.data["user"]);
+
+				if (user) {
+					localStorage.setItem("user", JSON.stringify(user));
+				}
+				localStorage.setItem("authHeaders", JSON.stringify(response.headers));
+
 				Notification({
 					message: "Login",
 					description: "Logged in successfully",
 					type: NotificationTypes.SUCCESS,
 				});
+
+				
+				setUser(user);
 				setAuthenticated(user);
-				navigate(AppRoutes.HOME);
+				setLoading(false);
+				// navigate(AppRoutes.DASHBOARD);
 			} catch (error: any) {
 				Notification({
 					message: "Login failed",
 					description: "incorrect email or password",
 					type: NotificationTypes.ERROR,
 				});
-
+				setLoading(false);
 				setError(error);
 			}
-		} finally {
-			setLoading(false);
-		}
+		} finally { };
 	};
 
 	return {
+		user,
 		error,
 		loading,
 		loginUser,

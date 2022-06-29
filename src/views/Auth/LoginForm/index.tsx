@@ -4,46 +4,62 @@ import InputField from "../../../shared/components/InputField";
 import { validationSchema } from "./LoginValidation";
 import { Button } from "antd";
 import UserService from "../../../services/AuthService/auth.service";
-import { useNavigate } from "react-router-dom";
-import { AppRoutes } from "../../../routes/routeConstants/appRoutes";
-import { AuthContext } from "../../../context/AuthContext";
+import "./login.scss";
+import { User } from "../../../models/user.model";
 
-interface User {
-  email: string;
-  password: string;
-}
+const LoginForm = () => {
+  const { loading, loginUser } = UserService();
 
-const initialValue = {
-  email: "abc@123.com",
-  password: "test@1234",
-};
-
-const LoginForm = (props: any) => {
-  const { error, loading, loginUser } = UserService();
-
-
-  const onSubmit = (user: User) => {
-    loginUser(user);
+  const onSubmit = async (values: User) => {
+    const user = Object.assign(new User(), values);
+    await loginUser(user);
   };
 
   return (
-    <div>
+    <div className="login-form">
       <Formik
-        initialValues={initialValue}
+        initialValues={new User()}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        <Form>
-          <InputField type="email" name="email" placeholder="Enter email" />
-          <InputField
-            type="password"
-            name="password"
-            placeholder="Enter password"
-          />
-          <Button htmlType="submit">Login</Button>
-        </Form>
+        {({ dirty, isValid }) => (
+          <Form>
+            <h2 className="font-bold">Login to admin portal</h2>
+            <InputField
+              title="Email ID"
+              type="email"
+              name="email"
+              placeholder="Enter email"
+            />
+            <InputField
+              title="Password"
+              type="password"
+              name="password"
+              placeholder="Enter password"
+            />
+            <div className="forget-password__link mb-5">
+              <label
+                htmlFor="forget-password"
+                className="cursor-pointer link"
+                onClick={() => {
+                  console.log('help');
+                }}
+              >
+                Forgot Password ?
+              </label>
+            </div>
+            <Button
+              htmlType="submit"
+              type="primary"
+              disabled={!isValid || !dirty}
+              loading={loading}
+            >
+              Login
+            </Button>
+          </Form>
+        )}
       </Formik>
-    </div>
+    </div >
   );
 };
 

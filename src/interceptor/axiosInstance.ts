@@ -28,7 +28,8 @@ axiosInstance.interceptors.response.use(
         return {
             data: response.data,
             message: response.statusText,
-            status: response.status
+            status: response.status,
+            headers: response.headers,
         }
     },
     (error) => {

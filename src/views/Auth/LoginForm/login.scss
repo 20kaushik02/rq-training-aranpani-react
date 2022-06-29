@@ -1,0 +1,14 @@
+.login-form h2 {
+  font-weight: bold !important;
+  color: #343c6a;
+  margin-bottom: 2.2rem;
+}
+
+.login-form .forget-password__link {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.login-form .link:hover {
+  text-decoration: underline;
+}

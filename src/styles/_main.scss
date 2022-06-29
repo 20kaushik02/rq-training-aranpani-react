@@ -2,12 +2,79 @@
 @import "helpers";
 @import "@antOverrides";
 
-/* General component styles */
-body {
-  background-color: #FFFFFF;
-  color: $primary-black;
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-body, h1, h2, h3, h4, h5, button, input {
-  font-family: 'Roboto', sans-serif !important;
+@font-face {
+  font-family: SFProDisplay;
+  src: url("./fonts/SFPRODISPLAYREGULAR.OTF") format("truetype");
+}
+
+@font-face {
+  font-family: SFProDisplayBold;
+  src: url("./fonts/SFPRODISPLAYBOLD.OTF") format("truetype");
+}
+
+/* General component styles */
+body {
+  background-color: #ffffff;
+  color: #4b4b4b;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  color: #343c6a;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+button,
+input {
+  font-family: SFProDisplay, SFProDisplayBold, "Roboto",
+    sans-serif !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.font-bold {
+  font-family: SFProDisplayBold !important;
+}
+
+
+.font-semi-bold {
+  font-family: SFProDisplaySemiBold !important;
+}
+
+.fade-in {
+  animation: fade-in 0.5s forwards;
+}
+
+.fade-out {
+  animation: fade-in 0.5s reverse;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -28,7 +28,7 @@ const AuthContext = () => {
   const [auth, setAuth] = context;
   
   const setAuthenticated = (user?: User) => {
-    setAuth((auth) => ({
+    setAuth(() => ({
       ...auth,
       authenticated: true,
       user,

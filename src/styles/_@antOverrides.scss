@@ -1,31 +1,57 @@
 @import "variables";
 
 /* Input Field */
+
+.input-field {
+  margin-top: 6px;
+}
+
 .ant-input {
   border-radius: $input-border-radius;
   border-color: $input-border-color;
-  &:focus,
-  &:hover {
-    border-color: $input-border-color-hover;
-  }
   &:focus {
     box-shadow: $input-border-box-shadow !important;
+    outline: none;
   }
+}
+
+.ant-input-affix-wrapper {
+  & .ant-input {
+    height: 100% !important;
+  }
+}
+
+.ant-input,
+.ant-input-affix-wrapper {
+  height: 36px;
+  text-indent: 10px;
+}
+
+/* Password */
+.ant-input-password {
+  border-radius: 6px;
+  padding: 0px 11px !important;
 }
 
 /* Button */
 
 .ant-btn {
-  /* Primary button */
+  width: 100%;
   background-color: $button-default-bg-color;
   color: $button-default-text-color;
   border-color: $button-default-border-color;
   border-radius: $button-default-border-radius;
+  height: 36px;
+  /* Primary button */
   &.ant-btn-primary {
     background-color: $button-primary-bg-color;
     color: $button-primary-text-color;
     border-color: $button-primary-border-color;
     border-radius: $button-primary-border-radius;
+  }
+  &:disabled {
+    background-color: $button-primary-disabled-bg-color;
+    border-color: $button-primary-disabled-border-color;
   }
 }
 
@@ -89,10 +115,10 @@
     box-shadow: $select-focus-box-shadow !important;
   }
   .ant-select-selector {
-      border-color: $select-border-color !important;
-      &:hover {
-          border-color: $select-hover-border-color !important;
-      }
+    border-color: $select-border-color !important;
+    &:hover {
+      border-color: $select-hover-border-color !important;
+    }
   }
 
   &.ant-select-open {
