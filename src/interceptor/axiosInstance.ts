@@ -1,15 +1,27 @@
 import axios from 'axios';
-import {ApiRoutes} from "../routes/routeConstants/apiRoutes";
+import { NotificationTypes } from '../enums/notificationTypes';
+import { ApiRoutes } from "../routes/routeConstants/apiRoutes";
+import Notification from '../shared/components/Notification';
 
 export const getHeaders = (): any => {
-    let headers, user;
-    if (localStorage.getItem('user')) {
-        user = JSON.parse(localStorage.getItem('user') || '');
+    let headers, authHeaders;
+    
+    if (localStorage.getItem('authHeaders')) {
+        authHeaders = JSON.parse(localStorage.getItem('authHeaders') || '');
     }
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${(user && user.adminAuthToken) ? user.adminAuthToken : ''}`,
     };
+
+    if (authHeaders) {
+        headers = {
+            ...headers,
+            'access-token': authHeaders['access-token'],
+            'token-type': 'Bearer',
+            'client': authHeaders['client'],
+            'uid': authHeaders['uid'],
+        }
+    }
     return headers;
 };
 
@@ -18,7 +30,7 @@ const axiosInstance = axios.create({
     timeout: 20000,
 });
 
-axiosInstance.interceptors.request.use(function (config) {
+axiosInstance.interceptors.request.use((config) => {
     config.headers = getHeaders();
     return config;
 });
@@ -35,7 +47,17 @@ axiosInstance.interceptors.response.use(
     (error) => {
         const { response } = error;
         if (response.status === 401) {
+            localStorage.clear()
         }
+        Notification({
+            message: (
+                typeof response.data === "string" ?
+                    response.data.errors
+                    : response.data.errors[0]
+            ) || "Something went wrong",
+            description: "",
+            type: NotificationTypes.ERROR,
+        });
         return Promise.reject(error);
     }
 );

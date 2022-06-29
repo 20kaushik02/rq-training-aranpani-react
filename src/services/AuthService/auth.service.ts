@@ -41,10 +41,8 @@ const UserService = () => {
 					type: NotificationTypes.SUCCESS,
 				});
 
-				
 				setUser(user);
 				setAuthenticated(user);
-				setLoading(false);
 				// navigate(AppRoutes.DASHBOARD);
 			} catch (error: any) {
 				Notification({
@@ -52,17 +50,58 @@ const UserService = () => {
 					description: "incorrect email or password",
 					type: NotificationTypes.ERROR,
 				});
-				setLoading(false);
 				setError(error);
 			}
-		} finally { };
+		} finally {
+			setLoading(false);
+		};
 	};
+
+	const setResetCode = async (user: User) => {
+		try {
+			setLoading(true);
+			const forgotPasswordJSON = {
+				admin: serialize(user),
+			};
+			const response = await axiosInstance.post(
+				ApiRoutes.FORGOT_PASSWORD,
+				forgotPasswordJSON
+			);
+			return true;
+		} catch (error: any) {
+			setError(error);
+			return false;
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const resetPassword = async (user: User) => {
+		try {
+			setLoading(true);
+			const forgotPasswordJSON = {
+				admin: serialize(user),
+			};
+			const response = await axiosInstance.post(
+				ApiRoutes.RESET_PASSWORD,
+				forgotPasswordJSON
+			);
+			return true;
+		} catch (error: any) {
+			setError(error);
+			return false;
+		} finally {
+			setLoading(false);
+		}
+	}
 
 	return {
 		user,
 		error,
 		loading,
 		loginUser,
+		setResetCode,
+		resetPassword,
 	};
 };
 

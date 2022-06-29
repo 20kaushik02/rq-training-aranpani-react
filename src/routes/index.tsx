@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Navigate,
   Routes,
   Route,
   BrowserRouter,
@@ -10,24 +11,17 @@ import { AppRoutes } from "./routeConstants/appRoutes";
 import AuthWrapper from "../views/Auth/AuthWrapper";
 
 const AppRouter = () => {
-  let routes: RouterProps[] = [
+  const routes: RouterProps[] = [
     { path: AppRoutes.AUTH, component: <AuthWrapper /> },
-    // { path: AppRoutes.HOME, component: isAuthenticated(<Home />) },
   ];
 
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          {routes?.map((route, index) => {
-            return (
-              <Route
-                key={index}
-                path={route?.path}
-                element={route?.component}
-              />
-            );
-          })}
+          {routes.map(({ component, ...route }, index) =>
+            <Route key={index} {...route} element={component} />
+          )}
         </Routes>
       </BrowserRouter>
     </div>

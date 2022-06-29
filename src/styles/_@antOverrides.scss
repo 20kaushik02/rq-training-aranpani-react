@@ -48,10 +48,11 @@
     color: $button-primary-text-color;
     border-color: $button-primary-border-color;
     border-radius: $button-primary-border-radius;
-  }
-  &:disabled {
-    background-color: $button-primary-disabled-bg-color;
-    border-color: $button-primary-disabled-border-color;
+    &:disabled {
+      color: $button-primary-text-color;
+      background-color: $button-primary-disabled-bg-color;
+      border-color: $button-primary-disabled-border-color;
+    }
   }
 }
 
