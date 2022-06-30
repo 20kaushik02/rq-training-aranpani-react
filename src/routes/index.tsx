@@ -6,7 +6,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import { RouterProps } from "../shared/types/route.type";
-import { AppRoutes } from "./routeConstants/appRoutes";
+import { AppRoutes, NavigationRoutes } from "./routeConstants/appRoutes";
 // import isAuthenticated from "../shared/components/HOC/requireAuth";
 import AuthWrapper from "../views/Auth/AuthWrapper";
 
@@ -22,6 +22,7 @@ const AppRouter = () => {
           {routes.map(({ component, ...route }, index) =>
             <Route key={index} {...route} element={component} />
           )}
+          <Route path="*" element={<Navigate to={NavigationRoutes.LOGIN} />} />
         </Routes>
       </BrowserRouter>
     </div>
