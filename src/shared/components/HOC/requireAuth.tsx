@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import { NavigationRoutes } from '../../../routes/routeConstants/appRoutes';
-import RestrictAccess from "../RestrictedAccess";
 
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
     const Authentication = (props: any) => {
-        const { allowedRoles } = props
         const { authenticated } = AuthContext();
         const location = useLocation();
         const navigate = useNavigate();
@@ -16,11 +14,7 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
             }
         }, [props]);
 
-        if (allowedRoles?.length) {
-            const { user } = props;
-            return allowedRoles.includes(user.role) ? children : <RestrictAccess />;
-        }
-        return children;
+        return <div className="app-wrapper">{children}</div>;
     }
 
     return <Authentication />;

@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NavigationRoutes } from "../../../routes/routeConstants/appRoutes";
 
-import { User } from "../../../models/user.model";
+import { User } from "../../../models/User/user.model";
 import { ResetPasswordValidationSchema } from "./validation";
 import UserService from "../../../services/AuthService/auth.service";
 

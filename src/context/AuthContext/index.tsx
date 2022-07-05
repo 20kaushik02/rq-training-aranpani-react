@@ -1,5 +1,6 @@
 import React, { useContext, createContext, useMemo, useState, Dispatch, SetStateAction } from "react";
-import { User } from "../../models/user.model";
+import LocalStorage from "../../shared/components/LocalStorage";
+import { User } from "../../models/User/user.model";
 
 export interface AuthState {
   authenticated?: boolean;
@@ -12,8 +13,8 @@ type AuthContentProps = [AuthState, SetAuthState];
 
 // Define the default context state
 const initialValues: AuthState = {
-  authenticated: false,
-  user: new User(),
+  authenticated: !!LocalStorage.getItem("authHeaders") || false,
+  user: LocalStorage.getItem("user") || undefined,
 };
 
 // Create the context
@@ -34,9 +35,19 @@ const AuthContext = () => {
     }));
   };
 
+  const setUnauthenticated = () => {
+    LocalStorage.clear()
+    setAuth((auth) => ({
+      ...auth,
+      authenticated: false,
+      user: undefined
+    }));
+  };
+
   return {
     ...auth,
-    setAuthenticated
+    setAuthenticated,
+    setUnauthenticated,
   };
 };
 

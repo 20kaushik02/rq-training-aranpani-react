@@ -1,6 +1,6 @@
 import React from "react";
 
-import { User } from "../../../models/user.model";
+import { User } from "../../../models/User/user.model";
 import { ForgotPasswordValidationSchema } from "./validation";
 import UserService from "../../../services/AuthService/auth.service";
 
