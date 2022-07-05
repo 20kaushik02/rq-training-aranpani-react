@@ -1,0 +1,143 @@
+.create-project-form .map,
+.project-suggestions-form .map {
+  border: 1px solid rgba(0, 0, 0, 0.404);
+  height: 250px;
+  margin-bottom: 20px;
+}
+
+.project-suggestions-modal {
+  & .icon-more,
+  & .icon-close {
+    cursor: pointer;
+  }
+
+  & .suggested-project {
+    margin-bottom: 25px;
+    padding: 18px;
+    height: max-content;
+    background: #e5e9ef 0% 0% no-repeat padding-box;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    &:hover i.icon-more {
+      display: block;
+    }
+  }
+  & .suggested-project__details {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.315);
+    & * {
+      color: #343c6a;
+    }
+    & i {
+      color: #7f91b0;
+      &.icon-more {
+        display: none;
+        color: #7f91b0;
+      }
+    }
+    & .header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      & h2 {
+        font: normal normal bold 24px/29px SFProDisplay;
+        letter-spacing: 0px;
+        color: #343c6a;
+      }
+    }
+  }
+}
+
+.project-suggestions-modal .suggested-project__details .info i {
+  margin-right: 6px;
+}
+.project-suggestions-modal .suggested-project__details .info h3 {
+  font-size: 15px;
+}
+.project-suggestions-modal .suggested-project__details .images {
+  display: flex;
+  margin-bottom: 10px;
+  overflow-x: scroll;
+}
+.project-suggestions-modal
+  .suggested-project__details
+  .images::-webkit-scrollbar {
+  display: none;
+}
+.project-suggestions-modal .suggested-project__details .images img {
+  width: 147px;
+  height: 83px;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+.project-suggestions-modal .suggested-project__person .person__card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.project-suggestions-modal .suggested-project__person .person__card .image {
+  width: 100px;
+  height: 80px;
+  margin-right: 20px;
+}
+.project-suggestions-modal .suggested-project__person .person__card .image img {
+  border-radius: 50%;
+}
+.project-suggestions-modal .suggested-project__person .person__card .info h3 {
+  font: normal normal 600 15px/18px SF Pro Display;
+  color: #000827;
+}
+.project-suggestions-modal .suggested-project__person .person__card .info > p {
+  font-size: 14px;
+  font-weight: 100;
+  color: #999daa;
+}
+.project-suggestions-modal .suggested-project__person .person__card .info div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-suggestions-modal
+  .suggested-project__person
+  .person__card
+  .info
+  div
+  p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-suggestions-modal
+  .suggested-project__person
+  .person__card
+  .info
+  div
+  p
+  i {
+  color: #7f91b0;
+  margin-right: 3px;
+}
+.project-suggestions-modal
+  .suggested-project__person
+  .person__card
+  .info
+  div
+  p:first-child {
+  margin-right: 10px;
+}
+
+.popover-content {
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  color: #343c6a;
+}
+.popover-content div {
+  cursor: pointer;
+}
+.popover-content > div:first-child {
+  margin-bottom: 10px;
+}
+.popover-content i {
+  margin-right: 8px;
+}
