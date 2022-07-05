@@ -45,9 +45,6 @@ const SideMenu = () => {
   const UserInfo = (
     <div className={`user-info ${showInfo ? "fade-in" : "fade-out"}`}>
       <Row>
-        <Col span={4} className="user-wrapper">
-          <i className="icon-my-account" />
-        </Col>
         <Col span={2} />
         <Col span={18}>
           <p className="name">{user?.username}</p>
@@ -55,18 +52,12 @@ const SideMenu = () => {
       </Row>
       <Divider />
       <Row className="mb-5">
-        <Col span={4} className="user-wrapper">
-          <i className="icon-change-password" />
-        </Col>
         <Col span={2} />
         <Col span={18}>
           <p className="name">Change Password</p>
         </Col>
       </Row>
       <Row onClick={logoutUser} className="user-menu">
-        <Col span={4} className="user-wrapper">
-          <i className="icon-logout" />
-        </Col>
         <Col span={2} />
         <Col span={18}>
           <p className="name">Logout</p>
@@ -99,16 +90,10 @@ const SideMenu = () => {
           <Menu className="side-menu__user">
             {showInfo && UserInfo}
             <Row className="user-card cursor-pointer" onClick={handleShowInfo}>
-              <Col span={4} className="user-wrapper">
-                <i className="icon-profile-placeholder" />
-              </Col>
               <Col span={2} />
               <Col span={16}>
                 <p className="name">{user?.username}</p>
                 <p className="role">Admin</p>
-              </Col>
-              <Col span={2} className={`${showInfo ? "deg-180" : "deg-0"}`}>
-                <i className="icon-down" />
               </Col>
             </Row>
           </Menu>
