@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { NotificationTypes } from '../enums/notificationTypes';
 import { ApiRoutes } from "../routes/routeConstants/apiRoutes";
+import LocalStorage from '../shared/components/LocalStorage';
 import Notification from '../shared/components/Notification';
 
 export const getHeaders = (): any => {
-    let headers, authHeaders;
-
-    if (localStorage.getItem('authHeaders')) {
-        authHeaders = JSON.parse(localStorage.getItem('authHeaders') || '');
-    }
+    let headers;
+    const authHeaders = LocalStorage.getItem("authHeaders");
+    
     headers = {
         'Content-Type': 'application/json',
     };
@@ -47,7 +46,7 @@ axiosInstance.interceptors.response.use(
     (error) => {
         const { response } = error;
         if (response.status === 401) {
-            localStorage.clear()
+            LocalStorage.clearSensitive()
         }
         Notification({
             message: (

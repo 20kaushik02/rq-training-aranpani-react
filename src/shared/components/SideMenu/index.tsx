@@ -39,9 +39,13 @@ const SideMenu = () => {
 
   const menuChildren = [menuHeaderItem].concat(menuItems);
 
-  const handleClick = (selected: any) => {
-    setPathname(selected?.key);
-  };
+  const handleRedirect = (path: string) => {
+    navigate(path);
+  }
+  
+  useEffect(() => {
+    setPathname(location?.pathname);
+  }, [location]);
 
   const UserInfo = (
     <div className={`user-info ${showInfo ? "fade-in" : "fade-out"}`}>
@@ -81,15 +85,10 @@ const SideMenu = () => {
     setShowInfo(show => !show);
   }
 
-  const handleRedirect = (path: string) => {
-    navigate(path);
-  }
-
   return (
     <div className="sidemenu__container">
       {authenticated ?
         <Menu
-          onClick={handleClick}
           mode="inline"
           className="side-menu"
         >

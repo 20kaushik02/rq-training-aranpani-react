@@ -29,7 +29,7 @@ export default class LocalStorage {
         localStorage.clear();
     }
 
-    static clearSenstive() {
+    static clearSensitive() {
         sensitive.forEach((key) => {
             this.removeItem(key);
         });
