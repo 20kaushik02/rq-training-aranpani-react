@@ -12,8 +12,6 @@ import { AppRoutes, NavigationRoutes } from "../../routes/routeConstants/appRout
 const UserService = () => {
 	const navigate = useNavigate();
 
-	const [user, setUser] = useState<User>()
-
 	const [error, setError] = useState<Error>();
 
 	const [loading, setLoading] = useState(false);
@@ -41,15 +39,9 @@ const UserService = () => {
 					type: NotificationTypes.SUCCESS,
 				});
 
-				setUser(user);
 				setAuthenticated(user);
 				navigate(AppRoutes.DASHBOARD);
 			} catch (error: any) {
-				Notification({
-					message: "Login failed",
-					description: "incorrect email or password",
-					type: NotificationTypes.ERROR,
-				});
 				setError(error);
 			}
 		} finally {
@@ -98,22 +90,18 @@ const UserService = () => {
 	const logoutUser = async () => {
 		try {
 			setLoading(true);
-			const response = await axiosInstance.delete(
+			await axiosInstance.delete(
 				ApiRoutes.USER_LOGOUT,
-			)
-			.then(() => {
-				localStorage.clear();
+			);
 
-				Notification({
-					message: "Logout",
-					description: "Logged out successfully",
-					type: NotificationTypes.SUCCESS,
-				});
-
-				navigate(NavigationRoutes.LOGIN);
-
-			})
-
+			localStorage.clear();
+			Notification({
+				message: "Logout",
+				description: "Logged out successfully",
+				type: NotificationTypes.SUCCESS,
+			});
+			setAuthenticated();
+			navigate(NavigationRoutes.LOGIN);
 		} catch (error: any) {
 			setError(error);
 			return false;
@@ -123,7 +111,6 @@ const UserService = () => {
 	}
 
 	return {
-		user,
 		error,
 		loading,
 		loginUser,

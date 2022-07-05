@@ -26,12 +26,11 @@ const AuthContext = () => {
     throw new Error(`useContext must be used within a contextProvider`);
   }
   const [auth, setAuth] = context;
-  
+
   const setAuthenticated = (user?: User) => {
     setAuth(() => ({
-      ...auth,
-      authenticated: true,
-      user,
+      authenticated: user ? true : false,
+      user: user ? user : new User(),
     }));
   };
 

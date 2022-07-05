@@ -5,7 +5,7 @@ import Notification from '../shared/components/Notification';
 
 export const getHeaders = (): any => {
     let headers, authHeaders;
-    
+
     if (localStorage.getItem('authHeaders')) {
         authHeaders = JSON.parse(localStorage.getItem('authHeaders') || '');
     }
@@ -53,7 +53,7 @@ axiosInstance.interceptors.response.use(
             message: (
                 typeof response.data === "string" ?
                     response.data.errors
-                    : response.data.errors[0]
+                    : response.data.error
             ) || "Something went wrong",
             description: "",
             type: NotificationTypes.ERROR,
