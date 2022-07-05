@@ -1,0 +1,33 @@
+.app-table {
+  & .filters {
+    & .ant-col.ant-col-6 {
+      margin-top: 6px;
+      & pre {
+        color: #343c6a;
+        font-family: SFProDisplay;
+        & > span  {
+            font-family: SFProDisplayBold;
+        }
+      }
+    }
+    & .ant-col.ant-col-18 {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      & .search-field {
+        width: 300px;
+        border-color: #d6d8e5 !important;
+        border-radius: 6px;
+        box-shadow: none !important;
+        margin-left: 15px;
+        & i {
+          color: #396aff;
+        }
+      }
+    }
+  }
+  & .ant-table {
+    margin-top: 2rem;
+    box-shadow: 0px 0px 24px #3e3f5e0f;
+  }
+}
