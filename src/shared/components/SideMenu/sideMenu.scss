@@ -1,0 +1,186 @@
+.side-menu {
+  position: fixed !important;
+  width: 100%;
+}
+
+.sidemenu__container {
+  position: relative;
+}
+
+.ant-menu {
+  &.ant-menu-light {
+    &.side-menu {
+      &.ant-menu-root {
+        height: 100vh;
+        width: 18% !important;
+        background-color: #040930;
+        display: inline-block;
+        &::after,
+        &::before {
+          display: none;
+        }
+        & .side-menu__main {
+          background-color: #040930;
+          overflow-y: scroll;
+          height: calc(100vh - (75px + 1rem));
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+        & .side-menu__user {
+          margin-bottom: 18px;
+          background-color: #040930;
+          & .user-info {
+            position: absolute;
+            bottom: calc((75px + 1rem) - 10px);
+            left: 0px;
+            right: 0;
+            background-color: #292d4e;
+            padding: 1.4rem;
+            width: 90%;
+            margin: auto;
+            border-radius: 6px;
+            & p {
+              margin: 0px;
+            }
+            & i {
+              color: #5f6389;
+              font-size: 18px;
+            }
+            & .ant-col.ant-col-18 {
+              display: flex;
+              align-items: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ant-menu.ant-menu-light.side-menu.ant-menu-root
+  .side-menu__user
+  .user-info
+  .ant-divider {
+  background-color: #5f6389;
+  margin: 24px 0;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .side-menu__user::after,
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .side-menu__user::before {
+  display: none !important;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .side-menu__user .user-card {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  background-color: #292d4e;
+  padding: 1.4rem;
+  width: 90%;
+  margin: auto;
+  border-radius: 6px;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root
+  .side-menu__user
+  .user-card
+  .user-wrapper {
+  background-color: #45496c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  padding: 0.5rem 0.7rem;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .side-menu__user p,
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .side-menu__user i {
+  color: white;
+  margin-bottom: 0px;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .side-menu__user .name {
+  margin-bottom: 1.4rem;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .side-menu__user .role {
+  font-family: SFProDisplayLight;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .side-menu__user .icon-down {
+  font-size: 10px !important;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .heading {
+  margin: 2.5rem auto !important;
+  padding: 0px !important;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .heading h1 {
+  color: white;
+  margin: auto;
+  font-family: SFProDisplayBold;
+  font-size: 38px;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .ant-menu-item {
+  display: flex;
+  align-items: center;
+  color: white;
+  height: 50px !important;
+  margin: 8px auto;
+  width: 85%;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .ant-menu-item i {
+  font-size: 18px;
+  margin-right: 10px;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .ant-menu-item span {
+  font-size: 16px;
+  font-family: SFProDisplayBold;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root
+  .ant-menu-item.ant-menu-item-selected {
+  border-radius: 6px;
+  z-index: 1;
+  background-color: transparent;
+  position: relative;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root
+  .ant-menu-item.ant-menu-item-selected::after {
+  position: absolute;
+  border-radius: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  content: "";
+  background-color: #396aff;
+  z-index: -1;
+  animation: full-width 0.5s forwards;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .deg-180 {
+  animation: rotate-180 0.5s forwards ease-out;
+}
+.ant-menu.ant-menu-light.side-menu.ant-menu-root .deg-0 {
+  animation: rotate-180 0.5s reverse ease-out;
+}
+
+.user-menu {
+  cursor: pointer;
+}
+
+@keyframes rotate-180 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes full-width {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.ant-menu .ant-menu-item.ant-menu-item-disabled.disable {
+  color: white !important;
+  opacity: 0.5;
+  cursor: disabled;
+}

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { ApiRoutes } from "../../routes/routeConstants/apiRoutes";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { AppRoutes } from "../../routes/routeConstants/appRoutes";
+import { AppRoutes, NavigationRoutes } from "../../routes/routeConstants/appRoutes";
 
 const UserService = () => {
 	const navigate = useNavigate();
@@ -43,7 +43,7 @@ const UserService = () => {
 
 				setUser(user);
 				setAuthenticated(user);
-				// navigate(AppRoutes.DASHBOARD);
+				navigate(AppRoutes.DASHBOARD);
 			} catch (error: any) {
 				Notification({
 					message: "Login failed",
@@ -95,6 +95,33 @@ const UserService = () => {
 		}
 	}
 
+	const logoutUser = async () => {
+		try {
+			setLoading(true);
+			const response = await axiosInstance.delete(
+				ApiRoutes.USER_LOGOUT,
+			)
+			.then(() => {
+				localStorage.clear();
+
+				Notification({
+					message: "Logout",
+					description: "Logged out successfully",
+					type: NotificationTypes.SUCCESS,
+				});
+
+				navigate(NavigationRoutes.LOGIN);
+
+			})
+
+		} catch (error: any) {
+			setError(error);
+			return false;
+		} finally {
+			setLoading(false);
+		}
+	}
+
 	return {
 		user,
 		error,
@@ -102,6 +129,7 @@ const UserService = () => {
 		loginUser,
 		setResetCode,
 		resetPassword,
+		logoutUser
 	};
 };
 

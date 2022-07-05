@@ -14,14 +14,14 @@ import "./resetPassword.scss";
 const ResetPassword = () => {
   const { resetPassword, loading } = UserService();
 
-  const location = useLocation();
   const navigate = useNavigate();
+  
+  // const location = useLocation();
+  // const email = new URLSearchParams(location.search).get("email");
 
-  const email = new URLSearchParams(location.search).get("email");
-
-  if (!email) {
-    navigate(NavigationRoutes.LOGIN);
-  }
+  // if (!email) {
+  //   navigate(NavigationRoutes.LOGIN);
+  // }
 
   const handleSubmit = async (values: User) => {
     const user = Object.assign(new User(), {
