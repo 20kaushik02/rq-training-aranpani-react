@@ -2,11 +2,6 @@
 @import "helpers";
 @import "@antOverrides";
 
-*, *::before, *::after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 @font-face {
   font-family: SFProDisplay;
   src: url("./fonts/SFPRODISPLAYREGULAR.OTF") format("truetype");
@@ -41,8 +36,11 @@ h4,
 h5,
 button,
 input {
-  font-family: SFProDisplay, SFProDisplayBold, "Roboto",
-    sans-serif !important;
+  font-family: SFProDisplay, SFProDisplayBold, "Roboto", sans-serif !important;
+}
+
+label {
+  color: #343c6a;
 }
 
 .cursor-pointer {
@@ -55,11 +53,6 @@ input {
 
 .font-bold {
   font-family: SFProDisplayBold !important;
-}
-
-
-.font-semi-bold {
-  font-family: SFProDisplaySemiBold !important;
 }
 
 .fade-in {
@@ -77,4 +70,13 @@ input {
   to {
     opacity: 1;
   }
+}
+
+.app-wrapper {
+  display: inline-block;
+  width: 78%;
+  position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 40px 0 30px 20%;
 }

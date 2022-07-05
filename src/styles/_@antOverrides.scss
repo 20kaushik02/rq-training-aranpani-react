@@ -128,3 +128,142 @@
     }
   }
 }
+
+
+/* Tabs */
+.ant-tabs.ant-tabs-top
+  .ant-tabs-nav
+  .ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+  background-color: #343c6a;
+}
+
+.ant-tabs.ant-tabs-top .ant-tabs-nav .ant-tabs-tab .ant-tabs-tab-btn {
+  color: #7f91b0;
+}
+
+.ant-tabs.ant-tabs-top
+  .ant-tabs-nav
+  .ant-tabs-tab.ant-tabs-tab-active
+  .ant-tabs-tab-btn {
+  color: #343c6a;
+}
+
+/* Select */
+.ant-select {
+  box-shadow: none !important;
+}
+.ant-select:hover {
+  box-shadow: none !important;
+}
+.ant-select i {
+  font-size: 10px !important;
+}
+.ant-select .ant-select-selector {
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+.ant-select .ant-select-selector:hover {
+  box-shadow: none !important;
+}
+
+/* Table */
+.ant-table {
+  border-radius: 10px 10px 0px 0px !important;
+  overflow: hidden;
+}
+.ant-table .ant-table-container .ant-table-thead > tr > th {
+  background-color: #e3e5f2;
+  color: #343c6a;
+  font-family: SFProDisplayBold !important;
+}
+
+/* Pagination */
+.ant-pagination {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.ant-pagination .ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination .ant-pagination-next .ant-pagination-item-link {
+  border: none;
+  outline: none;
+  color: #343c6a;
+}
+.ant-pagination .ant-pagination-item {
+  border: none;
+  outline: none;
+  color: #343c6a;
+}
+.ant-pagination .ant-pagination-item.ant-pagination-item-active {
+  border: 1px solid #343c6a;
+  border-radius: 6px;
+}
+.ant-pagination .ant-pagination-item.ant-pagination-item-active a {
+  color: #343c6a;
+}
+
+.ant-popover-content {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 4px 24px #3e3f5e33;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+.ant-popover-content .ant-popover-arrow {
+  display: none;
+}
+
+.ant-progress-text {
+  color: #83b85c;
+}
+
+.ant-progress-bg {
+  background-color: #83b85c;
+}
+
+.ant-modal-content {
+  padding: 30px 15px;
+  border-radius: 10px;
+}
+.ant-modal-content .ant-modal-close {
+  display: none;
+}
+
+.ant-modal-header {
+  border: none;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+.ant-modal-header .ant-modal-title .modal-title {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.ant-modal-header .ant-modal-title .modal-title h2 {
+  font: normal normal bold 24px/29px SF Pro Display;
+  color: #343c6a;
+}
+.ant-modal-header .ant-modal-title .modal-controls i:first-child {
+  padding-right: 15px;
+}
+
+.ant-modal-body {
+  padding-bottom: 0px;
+}
+
+.ant-modal-footer {
+  display: none;
+}
+
+.ant-modal .icon-more,
+.ant-modal .icon-close {
+  cursor: pointer;
+}
+
+.ant-menu-inline {
+  border-right: unset !important;
+}
+
+.ant-picker {
+  padding: 4px 11px 4px 0 !important;
+}
