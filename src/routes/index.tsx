@@ -8,7 +8,7 @@ import {
 import { RouterProps } from "../shared/types/route.type";
 import { AppRoutes } from "./routeConstants/appRoutes";
 
-import isAuthenticated from "../shared/components/HOC/requireAuth";
+import isAuthenticated from "../shared/components/HOC/withAuth";
 import SideMenu from "../shared/components/SideMenu";
 
 import AuthWrapper from "../views/Auth/AuthWrapper";

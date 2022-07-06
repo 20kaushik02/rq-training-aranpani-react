@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import { NavigationRoutes } from '../../../routes/routeConstants/appRoutes';
 
-const RequireAuth = ({ children }: { children: JSX.Element }) => {
+const withAuth = ({ children }: { children: JSX.Element }) => {
     const Authentication = (props: any) => {
         const { authenticated } = AuthContext();
         const location = useLocation();
@@ -21,7 +21,7 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
 };
 
 export const isAuthenticated = (component: JSX.Element) => {
-    return RequireAuth({ children: component });
+    return withAuth({ children: component });
 };
 
 

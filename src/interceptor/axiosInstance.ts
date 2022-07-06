@@ -3,11 +3,13 @@ import { NotificationTypes } from '../enums/notificationTypes';
 import { ApiRoutes } from "../routes/routeConstants/apiRoutes";
 import LocalStorage from '../shared/components/LocalStorage';
 import Notification from '../shared/components/Notification';
+import { objectCoalesce } from '../shared/utils/nullCoalesce';
+import { sleep } from '../shared/utils/sleep';
 
 export const getHeaders = (): any => {
     let headers;
     const authHeaders = LocalStorage.getItem("authHeaders");
-    
+
     headers = {
         'Content-Type': 'application/json',
     };
@@ -43,20 +45,24 @@ axiosInstance.interceptors.response.use(
             headers: response.headers,
         }
     },
-    (error) => {
+    async (error) => {
         const { response } = error;
-        if (response.status === 401) {
-            LocalStorage.clearSensitive()
+        let errMsg: any = objectCoalesce(response.data, ["errors", "error"]);
+        if (Array.isArray(errMsg)) {
+            errMsg = errMsg[0];
         }
         Notification({
-            message: (
-                typeof response.data === "string" ?
-                    response.data.errors
-                    : response.data.error
-            ) || "Something went wrong",
+            message: (errMsg) || "Something went wrong",
             description: "",
             type: NotificationTypes.ERROR,
         });
+
+        await sleep(500);
+
+        if (response.status === 401) {
+            LocalStorage.clearSensitive();
+            window.location.reload();
+        }
         return Promise.reject(error);
     }
 );

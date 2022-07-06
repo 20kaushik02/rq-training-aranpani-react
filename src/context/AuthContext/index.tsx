@@ -36,9 +36,8 @@ const AuthContext = () => {
   };
 
   const setUnauthenticated = () => {
-    LocalStorage.clear()
-    setAuth((auth) => ({
-      ...auth,
+    LocalStorage.clearSensitive()
+    setAuth(() => ({
       authenticated: false,
       user: undefined
     }));
