@@ -3,5 +3,9 @@ export const argsCoalesce: any = (args: any[]) => {
 }
 
 export const objectCoalesce: any = (obj: any, args: string[]) => {
-    return obj[`${args.find(arg => obj.hasOwnProperty(arg))}`];
+    let firstKey = args.find(arg => obj.hasOwnProperty(arg));
+    if(firstKey !== undefined)  {
+        return obj[firstKey];
+    }
+    return undefined;
 }
