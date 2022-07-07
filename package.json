@@ -13,6 +13,7 @@
     "npm": "^8.12.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-phone-number-input": "^3.2.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "sass": "^1.49.7",
