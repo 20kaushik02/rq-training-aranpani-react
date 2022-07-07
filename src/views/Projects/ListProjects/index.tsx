@@ -5,32 +5,35 @@ import "./listProjects.scss";
 import ProjectService from "../../../services/ProjectService/project.service";
 import HeaderWithCreate from "../../../shared/components/HeaderWithCreate";
 import ProjectsTable from "../ProjectsTable";
+import ProjectForm from "../ProjectForm";
 
 const { TabPane } = Tabs;
 
 const projectTabs = [
-  { projectType: ProjectTypes.PROPOSED },
-  { projectType: ProjectTypes.PLANNED },
-  { projectType: ProjectTypes.ACTIVE },
-  { projectType: ProjectTypes.COMPLETED },
-  { projectType: ProjectTypes.SCRAPPED },
+  ProjectTypes.PROPOSED,
+  ProjectTypes.PLANNED,
+  ProjectTypes.ACTIVE,
+  ProjectTypes.COMPLETED,
+  ProjectTypes.SCRAPPED,
 ];
 
 const ListProjects = () => {
-  const { projects, projectPagination, loading, fetchProjects } = ProjectService()
+  const { projects, projectPagination, loading, fetchProjects } = ProjectService();
 
   const [tab, setTab] = useState("1");
+
+  const [createModalVisible, setCreateModalVisible] = useState(false);
 
   const handleChange = (activeKey: string) => {
     setTab(activeKey);
   };
 
   const refreshProjectList = (type: ProjectTypes, params?: any) => {
-    fetchProjects(type, params)
+    fetchProjects(type, params);
   }
 
   useEffect(() => {
-    fetchProjects(projectTabs[parseInt(tab) - 1].projectType, {
+    fetchProjects(projectTabs[parseInt(tab) - 1], {
       page: 1,
       search: '',
     })
@@ -40,13 +43,13 @@ const ListProjects = () => {
   return (
     <div className="list-projects">
       <div className="header">
-        <HeaderWithCreate title={'Project'} setFormVisible={() => { }} />
+        <HeaderWithCreate title={'Project'} setFormVisible={setCreateModalVisible} />
       </div>
       <Tabs
         defaultActiveKey={tab}
         onChange={handleChange}
       >
-        {projectTabs.map(({ projectType }, index) => (
+        {projectTabs.map((projectType, index) => (
           <TabPane tab={projectType}
             key={index + 1}
           >
@@ -59,6 +62,10 @@ const ListProjects = () => {
           </TabPane>
         ))}
       </Tabs>
+      <ProjectForm showModal={createModalVisible}
+        setShowModal={setCreateModalVisible}
+        refreshProjectList={refreshProjectList}
+      />
     </div>
   );
 };

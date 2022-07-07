@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deserialize } from "serializr";
+import { deserialize, serialize } from "serializr";
 import { ProjectTypes } from "../../enums/projectTypes";
 import axiosInstance from "../../interceptor/axiosInstance";
 import { Project } from "../../models/Project/project.model";
@@ -11,7 +11,7 @@ const ProjectService = () => {
 
 	const [projectPagination, setProjectPagination] = useState<PaginationModel>();
 
-	const [error, setError] = useState<Error | unknown>();
+	const [error, setError] = useState<Error>();
 
 	const [loading, setLoading] = useState(false);
 
@@ -33,7 +33,19 @@ const ProjectService = () => {
 			const pagination = deserialize(PaginationModel, data)
 			setProjects(projects);
 			setProjectPagination(pagination);
-		} catch (error) {
+		} catch (error: any) {
+			setError(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const createProject = async (data: Project) => {
+		try {
+			setLoading(true);
+			const project = serialize(Project, data)
+			await axiosInstance.post(ApiRoutes.PROJECTS, project);
+		} catch (error: any) {
 			setError(error);
 		} finally {
 			setLoading(false);
@@ -46,6 +58,7 @@ const ProjectService = () => {
 		error,
 		loading,
 		fetchProjects,
+		createProject,
 	};
 };
 
