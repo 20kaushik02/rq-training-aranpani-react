@@ -1,4 +1,4 @@
-import { serializable, alias, object, list, primitive } from 'serializr';
+import { serializable, alias, object, list, primitive, custom } from 'serializr';
 import { ProjectBlog } from './ProjectBlog/projectBlog.model';
 import { ProjectAttachment } from './ProjectAttachment/projectAttachment.model';
 
@@ -71,4 +71,13 @@ export class Project {
 
 	@serializable(alias('reason', primitive()))
 	reason?: string;
+
+	@serializable(alias('project_id', primitive()))
+	projectId?: number;
+
+	@serializable(alias('image', custom(
+		(file) => file,
+		() => { }
+	)))
+	image?: File;
 }

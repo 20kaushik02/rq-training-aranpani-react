@@ -1,15 +1,15 @@
+import { Col, Row } from "antd";
 import React, { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProjectService from "../../../services/ProjectService/project.service";
 import Back from "../../../shared/components/Back";
 import "./projectDetails.scss";
 import ProjectHeader from "./ProjectHeader";
+import ProjectImages from "./ProjectImages";
 
-interface ProjectDetailsProps { }
+const ProjectDetails = () => {
+  const { id } = useParams();
 
-const ProjectDetails: FC<ProjectDetailsProps> = () => {
-  const { id } = useParams();  
-  
   const { fetchProject, project } = ProjectService();
 
   const refreshProject = async () => {
@@ -32,6 +32,11 @@ const ProjectDetails: FC<ProjectDetailsProps> = () => {
         }}
         />
       </div>
+      <Row>
+        <Col span={15}>
+          <ProjectImages project={project} />
+        </Col>
+      </Row>
     </div>
   );
 };

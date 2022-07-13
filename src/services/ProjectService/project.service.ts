@@ -7,6 +7,8 @@ import { PaginationModel } from './../../models/Pagination/pagination.model';
 import { ApiRoutes } from "../../routes/routeConstants/apiRoutes";
 import Notification from "../../shared/components/Notification";
 import { NotificationTypes } from "../../enums/notificationTypes";
+import { jsonToFormData } from "../../shared/utils/dataFormatConverter";
+import { ProjectAttachment } from "../../models/Project/ProjectAttachment/projectAttachment.model";
 
 const ProjectService = () => {
 	const [project, setProject] = useState<Project>();
@@ -104,6 +106,30 @@ const ProjectService = () => {
 		}
 	}
 
+	const createProjectAttachment = async (data: Project) => {
+		try {
+			setLoading(true);
+			const _project = serialize(Project, data);
+			const _projectForm = jsonToFormData(_project);
+			const response = await axiosInstance.post(ApiRoutes.PROJECT_ATTACHMENTS, _projectForm);
+			return deserialize(ProjectAttachment, response.data['project_attachment']);
+		} catch (error: any) {
+			setError(error);
+		} finally {
+			setLoading(false);
+		}
+	}
+	const deleteProjectAttachment = async (attachmentId: string) => {
+		try {
+			setLoading(true);
+			await axiosInstance.delete(ApiRoutes.PROJECT_ATTACHMENTS + `/${attachmentId}`);
+		} catch (error: any) {
+			setError(error);
+		} finally {
+			setLoading(false);
+		}
+	}
+
 	return {
 		project,
 		projects,
@@ -115,6 +141,8 @@ const ProjectService = () => {
 		fetchProject,
 		editProject,
 		deleteProject,
+		createProjectAttachment,
+		deleteProjectAttachment,
 	};
 };
 

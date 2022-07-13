@@ -39,15 +39,15 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
     (response): any => {
         return {
-            data: response.data,
-            message: response.statusText,
-            status: response.status,
-            headers: response.headers,
+            data: response?.data,
+            message: response?.statusText,
+            status: response?.status,
+            headers: response?.headers,
         }
     },
     async (error) => {
         const { response } = error;
-        let errMsg: any = objectCoalesce(response.data, ["errors", "error"]);
+        let errMsg: any = objectCoalesce(response?.data, ["errors", "error"]);
         if (Array.isArray(errMsg)) {
             errMsg = errMsg[0];
         }
@@ -59,7 +59,7 @@ axiosInstance.interceptors.response.use(
 
         await sleep(500);
 
-        if (response.status === 401) {
+        if (response?.status === 401) {
             LocalStorage.clearSensitive();
             window.location.reload();
         }

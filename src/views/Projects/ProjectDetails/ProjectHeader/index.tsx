@@ -25,12 +25,6 @@ const ProjectHeader: FC<ProjectHeaderProps> = (props) => {
         templeNameTamil: ""
     });
 
-
-    useEffect(() => {
-        if (projectId)
-            refreshProject()
-    }, [projectId])
-
     useEffect(() => {
         if (project)
             setInitialValues({
