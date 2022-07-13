@@ -4,7 +4,7 @@ import { Input } from 'antd';
 import Error from "../Error";
 
 interface InputFieldProps {
-    title: string;
+    title?: string;
     type: string;
     name: string;
     placeholder: string;
@@ -18,7 +18,7 @@ const InputField: FC<InputFieldProps> = (props) => {
     const { name, title, type } = props;
     return (
         <div className="mb-1">
-            <label htmlFor={name}>{title}</label>
+            {title && <label htmlFor={name}>{title}</label>}
             <Field className="input-field" as={type === "password" ? Input.Password : Input} {...props} />
             <ErrorMessage name={name}>
                 {(message: string) => <Error message={message} />}

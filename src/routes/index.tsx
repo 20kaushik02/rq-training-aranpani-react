@@ -14,12 +14,14 @@ import SideMenu from "../shared/components/SideMenu";
 import AuthWrapper from "../views/Auth/AuthWrapper";
 import Dashboard from "../views/Dashboard";
 import ListProjects from "../views/Projects/ListProjects";
+import ProjectDetails from "../views/Projects/ProjectDetails";
 
 const AppRouter = () => {
   const routes: RouterProps[] = [
     { path: AppRoutes.AUTH, component: <AuthWrapper /> },
     { path: AppRoutes.DASHBOARD, component: isAuthenticated(<Dashboard />) },
-    { path: AppRoutes.PROJECTS, component: isAuthenticated(<ListProjects />)},
+    { path: AppRoutes.PROJECTS, component: isAuthenticated(<ListProjects />) },
+    { path: AppRoutes.PROJECT_DETAILS, component: isAuthenticated(<ProjectDetails />) },
   ];
 
   return (

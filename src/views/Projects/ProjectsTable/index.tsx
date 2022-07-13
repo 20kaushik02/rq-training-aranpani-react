@@ -5,6 +5,8 @@ import moment from "moment"
 import { Project } from "../../../models/Project/project.model";
 import AppTable from "../../../shared/components/AppTable";
 import { PaginationModel } from "../../../models/Pagination/pagination.model";
+import { generatePath, useNavigate } from "react-router-dom";
+import { AppRoutes } from "../../../routes/routeConstants/appRoutes";
 
 interface ProjectsTableProps {
     type: ProjectTypes;
@@ -87,11 +89,21 @@ const columns = [
 const ProjectsTable: FC<ProjectsTableProps> = (props) => {
     const { type, loading, projects, fetchProjects, pagination } = props;
 
+    const navigate = useNavigate();
+
     let tableColumns = type === 'Proposed' ? columnsProposed : columns;
 
     const searchProject = (search: string) => {
         fetchProjects(type, { search });
     }
+
+    const redirectToProject = (project: Project) => ({
+        onClick: () => {
+            navigate(generatePath(AppRoutes.PROJECT_DETAILS, {
+                id: project.id?.toString()
+            }))
+        },
+    });
 
     const tableChangeHandler = (pagination: TablePaginationConfig) => {
         fetchProjects(type, {
@@ -116,6 +128,7 @@ const ProjectsTable: FC<ProjectsTableProps> = (props) => {
                     showTotal: (total: number, range: [number, number]) => <p>Showing <b>{` ${range[0]} - ${range[1]}`}</b> of <b>{total}</b></p>
                 }}
                 data={projects}
+                handleRedirect={redirectToProject}
             />
         </div>
     );

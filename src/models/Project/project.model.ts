@@ -68,4 +68,7 @@ export class Project {
 
 	@serializable(alias('project_blogs', list(object(ProjectBlog))))
 	projectBlogs?: ProjectBlog[];
+
+	@serializable(alias('reason', primitive()))
+	reason?: string;
 }
