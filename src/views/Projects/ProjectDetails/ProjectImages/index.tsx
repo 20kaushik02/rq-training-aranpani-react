@@ -87,8 +87,6 @@ const ProjectImages: FC<ProjectImagesProps> = (props) => {
                 ] : [...project?.projectAttachments?.slice(1, 9)]
             })
         }
-        console.log(project?.projectAttachments?.slice(1, 8));
-
     }, [project])
 
     const formikProps = {
@@ -119,7 +117,7 @@ const ProjectImages: FC<ProjectImagesProps> = (props) => {
                                     />
                                 </Col>
                                 <Col span={16}>
-                                    <Row>
+                                    <Row gutter={[0, 10]}>
                                         {values.images?.map(
                                             (value: {
                                                 id: string,

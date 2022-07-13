@@ -1,0 +1,20 @@
+.project-details {
+  & .wrapper-row {
+    justify-content: space-evenly;
+  }
+}
+
+.popover-content {
+  cursor: pointer;
+  color: #e55252;
+}
+
+i.icon-edit {
+  color: #7f91b0;
+  cursor: pointer;
+}
+
+.sub-title {
+  font-size: 13px;
+  color: #7d979b;
+}

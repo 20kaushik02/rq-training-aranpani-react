@@ -1,0 +1,81 @@
+.project-status {
+  & .status {
+    position: relative;
+  }
+  & .project-status-edit {
+    position: absolute;
+    right: 10px;
+  }
+  & .scrap-reason {
+    margin-top: 15px;
+  }
+  & .status-select {
+    & .ant-select-selector {
+      background: #7f91b02a 0% 0% no-repeat padding-box !important;
+      border-radius: 6px !important;
+      padding: 18px 18px 18px 30px !important;
+      height: 68px !important;
+      font-size: x-large;
+      font-weight: bold;
+      &:before {
+        color: inherit !important;
+        margin-left: 10px;
+        visibility: visible;
+        content: ".";
+        position: absolute;
+        font-size: 60px;
+        top: -30px;
+        left: 0px;
+      }
+    }
+    &.proposed {
+      color: #7f91b0;
+    }
+    &.planned {
+      color: #f1a800;
+    }
+    &.active {
+      color: #396aff;
+    }
+    &.completed {
+      color: #83b85c;
+    }
+  }
+}
+
+.ant-select-item.ant-select-item-option {
+  .ant-select-item-option-content {
+    margin: auto;
+    background-color: transparent;
+    .ops {
+      font-size: x-large;
+      font-weight: bold;
+      padding-left: 20px;
+      &:before {
+        visibility: visible;
+        content: ".";
+        position: absolute;
+        font-size: 60px;
+        top: 10px;
+        left: 10px;
+      }
+      &.proposed {
+        color: #7f91b0;
+      }
+      &.planned {
+        color: #f1a800;
+      }
+      &.active {
+        color: #396aff;
+      }
+      &.completed {
+        color: #83b85c;
+      }
+    }
+  }
+}
+.ant-select-item-option-selected {
+  &:not(.ant-select-item-option-disabled) {
+    background-color: transparent;
+  }
+}

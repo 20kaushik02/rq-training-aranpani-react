@@ -6,6 +6,7 @@ import Back from "../../../shared/components/Back";
 import "./projectDetails.scss";
 import ProjectHeader from "./ProjectHeader";
 import ProjectImages from "./ProjectImages";
+import ProjectStatus from "./ProjectStatus";
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -32,9 +33,14 @@ const ProjectDetails = () => {
         }}
         />
       </div>
-      <Row>
+      <Row className="wrapper-row">
         <Col span={15}>
           <ProjectImages project={project} />
+        </Col>
+        <Col span={8}>
+          <ProjectStatus project={project}
+            refreshProject={refreshProject}
+          />
         </Col>
       </Row>
     </div>
