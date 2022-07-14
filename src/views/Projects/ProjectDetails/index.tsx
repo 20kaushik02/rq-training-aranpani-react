@@ -1,8 +1,9 @@
 import { Col, Row } from "antd";
-import React, { FC, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProjectService from "../../../services/ProjectService/project.service";
 import Back from "../../../shared/components/Back";
+import ProjectBasicInfo from "./ProjectBasicInfo";
 import "./projectDetails.scss";
 import ProjectHeader from "./ProjectHeader";
 import ProjectImages from "./ProjectImages";
@@ -11,7 +12,7 @@ import ProjectStatus from "./ProjectStatus";
 const ProjectDetails = () => {
   const { id } = useParams();
 
-  const { fetchProject, project } = ProjectService();
+  const { project, fetchProject } = ProjectService();
 
   const refreshProject = async () => {
     await fetchProject(id as any);
@@ -36,6 +37,10 @@ const ProjectDetails = () => {
       <Row className="wrapper-row">
         <Col span={15}>
           <ProjectImages project={project} />
+          <ProjectBasicInfo projectId={id as any}
+            project={project}
+            refreshProject={refreshProject}
+          />
         </Col>
         <Col span={8}>
           <ProjectStatus project={project}
