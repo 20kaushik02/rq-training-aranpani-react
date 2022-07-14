@@ -9,6 +9,7 @@ import Notification from "../../shared/components/Notification";
 import { NotificationTypes } from "../../enums/notificationTypes";
 import { jsonToFormData } from "../../shared/utils/dataFormatConverter";
 import { ProjectAttachment } from "../../models/Project/ProjectAttachment/projectAttachment.model";
+import { ProjectDocuments } from "../../models/Project/ProjectDocuments/projectDocuments.model";
 
 const ProjectService = () => {
 	const [project, setProject] = useState<Project>();
@@ -130,6 +131,31 @@ const ProjectService = () => {
 		}
 	}
 
+	const createProjectDocument = async (data: Project) => {
+		try {
+			setLoading(true);
+			const _project = serialize(Project, data)
+			const formData = jsonToFormData(_project);
+			const response = await axiosInstance.post(ApiRoutes.PROJECT_DOCUMENTS, formData);
+			return deserialize(ProjectDocuments, response.data['project_document']);
+		} catch (error: any) {
+			setError(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const deleteProjectDocument = async (documentId: string) => {
+		try {
+			setLoading(true);
+			await axiosInstance.delete(ApiRoutes.PROJECT_DOCUMENTS + `/${documentId}`);
+		} catch (error: any) {
+			setError(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	return {
 		project,
 		projects,
@@ -143,6 +169,8 @@ const ProjectService = () => {
 		deleteProject,
 		createProjectAttachment,
 		deleteProjectAttachment,
+		createProjectDocument,
+		deleteProjectDocument,
 	};
 };
 

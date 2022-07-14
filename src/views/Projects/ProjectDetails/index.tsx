@@ -5,6 +5,7 @@ import ProjectService from "../../../services/ProjectService/project.service";
 import Back from "../../../shared/components/Back";
 import ProjectBasicInfo from "./ProjectBasicInfo";
 import "./projectDetails.scss";
+import ProjectDocuments from "./ProjectDocuments";
 import ProjectHeader from "./ProjectHeader";
 import ProjectImages from "./ProjectImages";
 import ProjectStatus from "./ProjectStatus";
@@ -46,6 +47,7 @@ const ProjectDetails = () => {
           <ProjectStatus project={project}
             refreshProject={refreshProject}
           />
+          <ProjectDocuments project={project} />
         </Col>
       </Row>
     </div>

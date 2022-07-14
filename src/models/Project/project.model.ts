@@ -1,6 +1,7 @@
 import { serializable, alias, object, list, primitive, custom } from 'serializr';
 import { ProjectBlog } from './ProjectBlog/projectBlog.model';
 import { ProjectAttachment } from './ProjectAttachment/projectAttachment.model';
+import { ProjectDocuments } from './ProjectDocuments/projectDocuments.model';
 
 export class Project {
 	@serializable(alias('id', primitive()))
@@ -69,6 +70,9 @@ export class Project {
 	@serializable(alias('project_blogs', list(object(ProjectBlog))))
 	projectBlogs?: ProjectBlog[];
 
+	@serializable(alias('project_documents', list(object(ProjectDocuments))))
+	projectDocuments?: ProjectDocuments[] = [];
+
 	@serializable(alias('reason', primitive()))
 	reason?: string;
 
@@ -80,4 +84,10 @@ export class Project {
 		() => { }
 	)))
 	image?: File;
+
+	@serializable(alias('document', custom(
+		(file) => file,
+		() => { }
+	)))
+	document?: File;
 }

@@ -37,13 +37,14 @@ const ProjectBasicInfo: FC<ProjectBasicInfoProps> = (props) => {
         refreshProject();
     }, [projectId])
 
-    const dateFormatter = (date?: string) => date ? moment(date).format('DD/MM/YYYY') : undefined
+    const dateStringFormatter = (date?: string, format?: string) =>
+        date ? moment(date).format(format ?? 'DD/MM/YYYY') : undefined
 
     useEffect(() => {
         setInitialValues({
             regNumber: project?.regNumber,
-            startDate: dateFormatter(project?.startDate),
-            endDate: dateFormatter(project?.endDate),
+            startDate: dateStringFormatter(project?.startDate),
+            endDate: dateStringFormatter(project?.endDate),
             estimatedAmt: project?.estimatedAmt,
             expensedAmt: project?.expensedAmt,
             inchargeName: project?.inchargeName,
@@ -54,8 +55,8 @@ const ProjectBasicInfo: FC<ProjectBasicInfoProps> = (props) => {
 
     const handleCancel = (setFieldValue: Function) => {
         setProjectDetailsEditable(!projectDetailsEditable)
-        setFieldValue("startDate", dateFormatter(project?.startDate))
-        setFieldValue("endDate", dateFormatter(project?.endDate))
+        setFieldValue("startDate", dateStringFormatter(project?.startDate))
+        setFieldValue("endDate", dateStringFormatter(project?.endDate))
         setFieldValue("estimatedAmt", project?.estimatedAmt)
         setFieldValue("expensedAmt", project?.expensedAmt)
         setFieldValue("inchargeName", project?.inchargeName)
@@ -174,7 +175,7 @@ const ProjectBasicInfo: FC<ProjectBasicInfoProps> = (props) => {
                                     <Col span={9}>
                                         <Card>
                                             <span className="title">{project?.completion ?? 0}% Completion<br />
-                                                <span>last update on {moment().format('DD MMM,YYYY')}</span>
+                                                <span>last update on {dateStringFormatter(project?.updatedAt, 'DD MMM,YYYY')}</span>
                                             </span>
                                             <Progress percent={project?.completion || 0} size="small" />
                                         </Card>
