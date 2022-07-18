@@ -15,6 +15,7 @@ import AuthWrapper from "../views/Auth/AuthWrapper";
 import Dashboard from "../views/Dashboard";
 import ListProjects from "../views/Projects/ListProjects";
 import ProjectDetails from "../views/Projects/ProjectDetails";
+import Representatives from "../views/Representatives";
 
 const AppRouter = () => {
   const routes: RouterProps[] = [
@@ -22,6 +23,8 @@ const AppRouter = () => {
     { path: AppRoutes.DASHBOARD, component: isAuthenticated(<Dashboard />) },
     { path: AppRoutes.PROJECTS, component: isAuthenticated(<ListProjects />) },
     { path: AppRoutes.PROJECT_DETAILS, component: isAuthenticated(<ProjectDetails />) },
+    { path: AppRoutes.REPRESENTATIVE, component: isAuthenticated(<Representatives />) },
+
   ];
 
   return (

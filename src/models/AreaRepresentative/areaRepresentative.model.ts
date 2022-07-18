@@ -14,10 +14,10 @@ export class AreaRepresentative {
 	addressLine2?: string;
 
 	@serializable(alias('audit_status', primitive()))
-	auditStatus?: string;
+	auditStatus?: boolean;
 
 	@serializable(alias('donors_count', primitive()))
-	donorsCount?: string;
+	donorsCount?: number;
 
 	@serializable(alias('email', primitive()))
 	email?: string;
@@ -32,10 +32,10 @@ export class AreaRepresentative {
 	isdCode?: string;
 
 	@serializable(alias('lat', primitive()))
-	lat?: string;
+	lat?: number;
 
 	@serializable(alias('long', primitive()))
-	long?: string;
+	long?: number;
 
 	@serializable(alias('mobile_number', primitive()))
 	mobileNumber?: string;
@@ -56,7 +56,7 @@ export class AreaRepresentative {
 	roleName?: string;
 
 	@serializable(alias('status', primitive()))
-	status?: string;
+	status?: boolean;
 
 	@serializable(alias('username', primitive()))
 	username?: string;
