@@ -5,7 +5,7 @@ import moment from "moment"
 import { Project } from "../../../models/Project/project.model";
 import AppTable from "../../../shared/components/AppTable";
 import { PaginationModel } from "../../../models/Pagination/pagination.model";
-import { generatePath, useNavigate } from "react-router-dom";
+import { generatePath, useLocation, useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../../routes/routeConstants/appRoutes";
 
 interface ProjectsTableProps {
@@ -90,10 +90,21 @@ const ProjectsTable: FC<ProjectsTableProps> = (props) => {
     const { type, loading, projects, fetchProjects, pagination } = props;
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     let tableColumns = type === 'Proposed' ? columnsProposed : columns;
 
     const searchProject = (search: string) => {
+        const params = new URLSearchParams(location.search);
+        if (search)
+            params.set('search', search);
+        else
+            params.delete('search');
+        params.set('page', '1');
+        navigate(
+            AppRoutes.PROJECTS + "?" + params.toString(),
+            { replace: true },
+        );
         fetchProjects(type, { search });
     }
 
@@ -106,6 +117,12 @@ const ProjectsTable: FC<ProjectsTableProps> = (props) => {
     });
 
     const tableChangeHandler = (pagination: TablePaginationConfig) => {
+        const params = new URLSearchParams(location.search);
+        params.set('page', `${pagination?.current}`);
+        navigate(
+            AppRoutes.PROJECTS + "?" + params.toString(),
+            { replace: true },
+        );
         fetchProjects(type, {
             page: pagination.current,
         });

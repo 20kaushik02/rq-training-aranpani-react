@@ -13,13 +13,14 @@ interface AppTableProps {
     columns: any;
     loading?: boolean;
     totalRecords?: number;
+    scroll?: any;
     onChange?: (pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<any> | SorterResult<any>[], extra: TableCurrentDataSource<any>) => void
     pagination?: TablePaginationConfig | false;
     handleRedirect?: Function;
 }
 
 const AppTable: FC<AppTableProps> = (props) => {
-    const { data, projectType, title, handleSearch, columns, loading, totalRecords, onChange, pagination = {
+    const { data, projectType, title, handleSearch, columns, loading, totalRecords, scroll, onChange, pagination = {
         defaultPageSize: 50,
     }, handleRedirect } = props;
 
@@ -51,6 +52,7 @@ const AppTable: FC<AppTableProps> = (props) => {
                 }}
                 onRow={handleRedirect as any}
                 loading={loading}
+                scroll={scroll}
                 onChange={onChange}
             />
         </div>
