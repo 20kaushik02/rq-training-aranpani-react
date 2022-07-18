@@ -1,0 +1,16 @@
+.project-activity-form {
+  position: relative;
+}
+.project-activity-form .activity-save-btn,
+.project-activity-form .activity-cancel-btn {
+  position: absolute !important;
+  top: 0;
+  right: 80px;
+  width: fit-content;
+  float: right;
+}
+.project-activity-form .activity-cancel-btn {
+  right: 0;
+  border: unset;
+  color: #7d979b;
+}

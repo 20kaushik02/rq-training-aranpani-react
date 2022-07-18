@@ -3,8 +3,9 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProjectService from "../../../services/ProjectService/project.service";
 import Back from "../../../shared/components/Back";
-import ProjectBasicInfo from "./ProjectBasicInfo";
 import "./projectDetails.scss";
+import ProjectActivities from "./ProjectActivities";
+import ProjectBasicInfo from "./ProjectBasicInfo";
 import ProjectDocuments from "./ProjectDocuments";
 import ProjectHeader from "./ProjectHeader";
 import ProjectImages from "./ProjectImages";
@@ -42,6 +43,9 @@ const ProjectDetails = () => {
             project={project}
             refreshProject={refreshProject}
           />
+          {project?.status !== "proposed" && project?.status !== "planned" &&
+            <ProjectActivities />
+          }
         </Col>
         <Col span={8}>
           <ProjectStatus project={project}
