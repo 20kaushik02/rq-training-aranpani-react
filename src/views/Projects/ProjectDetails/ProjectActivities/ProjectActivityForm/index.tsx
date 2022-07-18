@@ -64,9 +64,9 @@ const ProjectActivityForm: FC<ProjectActivityFormProps> = (props) => {
             map(attachment => attachment?.id as any as string ?? '') ?? [];
         let response: any;
         if (currentActivity) {
-            await updateProjectActivity(id as any, values, currentActivity?.id)
+            response = await updateProjectActivity(id as any, values, currentActivity?.id)
         } else {
-            await createProjectActivity(id as any, values);
+            response = await createProjectActivity(id as any, values);
         }
         if (response) {
             refreshList();
