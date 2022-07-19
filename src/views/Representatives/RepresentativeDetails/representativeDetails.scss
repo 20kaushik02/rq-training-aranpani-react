@@ -1,0 +1,31 @@
+.representative-details .rep-header {
+  margin: 10px 0 25px 0;
+}
+.representative-details .rep-header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.representative-details .rep-header h1 {
+  margin-left: 12px;
+  margin-bottom: unset;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.representative-details .rep-audit-status {
+  padding: 16px 32px;
+  box-shadow: 0 4px 24px #3e3f5e0f;
+  border-radius: 10px;
+}
+.representative-details .rep-audit-status.done {
+  background: #396aff1a 0 0 no-repeat padding-box;
+  color: #396aff;
+}
+.representative-details .rep-audit-status.pending {
+  background: #f1a8001a 0 0 no-repeat padding-box;
+  color: #f1a800;
+}
+.representative-details .rep-audit-status .audit-header {
+  margin-bottom: 5px;
+}

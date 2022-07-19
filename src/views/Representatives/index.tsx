@@ -45,6 +45,12 @@ const Representatives = () => {
             dataIndex: "username",
             key: "username",
             width: 150,
+            render: (_checked: boolean, record: AreaRepresentative): JSX.Element => {
+                return <span>
+                    {record?.profilePicUrl && <img src={record?.profilePicUrl} alt="" />}
+                    <span>{record?.username}</span>
+                </span>
+            },
             ellipsis: true,
         },
         {
