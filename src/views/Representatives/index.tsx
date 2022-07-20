@@ -31,7 +31,7 @@ const Representatives = () => {
             render: (_checked: boolean, _record: AreaRepresentative, index: number): number => {
                 return index + 1;
             },
-            defaultSortOrder: 'descend',
+            defaultSortOrder: 'ascend',
             sorter: (a: any, b: any) => Number(a.regNumber.substring(3)) - Number(b.regNumber.substring(3)),
         },
         {
@@ -131,6 +131,10 @@ const Representatives = () => {
 
     const handleRowClick = (rep: AreaRepresentative) => ({
         onClick: () => {
+            console.log(generatePath(AppRoutes.REPRESENTATIVE_DETAILS, {
+                id: rep.id?.toString()
+            }));
+            
             navigate(generatePath(AppRoutes.REPRESENTATIVE_DETAILS, {
                 id: rep.id?.toString()
             }))
@@ -145,7 +149,7 @@ const Representatives = () => {
             params.delete('search');
         params.set('page', '1');
         navigate(
-            AppRoutes.REPRESENTATIVE + "?" + params.toString(),
+            location.pathname + "?" + params.toString(),
             { replace: true },
         );
         fetchAreaRepList({ search, page: 1 })
@@ -155,7 +159,7 @@ const Representatives = () => {
         const params = new URLSearchParams(location.search);
         params.set('page', `${pagination?.current}`);
         navigate(
-            AppRoutes.REPRESENTATIVE + "?" + params.toString(),
+            location.pathname + "?" + params.toString(),
             { replace: true },
         );
         fetchAreaRepList({

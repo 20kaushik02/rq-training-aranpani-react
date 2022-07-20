@@ -26,5 +26,13 @@ export class DonorSubscriptionScheme {
 
     @serializable(alias('total_contributions_current_yr', primitive()))
     totalContributionsCurrentYr?: number;
-
+	
+	@serializable(alias('name', primitive()))
+	name?: string;
+	
+	@serializable(alias('amount', primitive()))
+	amount?: number;
+	
+	@serializable(alias('status', primitive()))
+	status?: string;
 }

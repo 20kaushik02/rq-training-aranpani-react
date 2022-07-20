@@ -10,4 +10,7 @@ export const ApiRoutes = {
     PROJECT_BLOGS: "admin/projects/:projectId/project_blogs",
     PROJECT_BLOG_ATTACHMENTS: "admin/project_blog_attachments",
     AREA_REPRESENTATIVES: "admin/area_representatives",
+    DONORS: "admin/donors",
+    DONOR: "admin/donors/:donorId",
+    DONOR_SUBSCRIPTIONS: "admin/donors/:donorId/subscribed_projects",
 }
